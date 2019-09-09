@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './apiKey' ;
+import {FirebaseAuthProvider, FirebaseAuthConsumer} from "@react-firebase/auth";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import LogInPage from './components/LogInPage';
+import HomePage from './components/HomePage';
+import FixedFound from './components/FixedFound';
 
-function App() {
+function App() {  
   return (
+    <div>
+    <FirebaseAuthProvider firebase={firebase} {...firebaseConfig} />   
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+      <Switch>
+        <Route exact path = "/" component ={FixedFound}/>
+        <Route path = "/home" component ={HomePage}/>
+        <Route path = "/logIn" component ={LogInPage}/>
+    </Switch>
+    </Router>
+    </div>
     </div>
   );
 }
-
+    
 export default App;
