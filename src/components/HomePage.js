@@ -1,11 +1,14 @@
 import LogOut from './LogOutButton'
 import React from 'react'
+// import Container from './NotesContainer'
+import Notes from './Notes'
+
 
 function HomePage() {  
   return (
     <div>
     <LogOut />
-    <h1> Aqui van a ir mis notitas </h1>
+    <Notes /> 
     </div>
   );
 }

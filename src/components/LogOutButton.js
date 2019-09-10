@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {FirebaseAuthConsumer} from "@react-firebase/auth";
 import firebase from 'firebase/app';
 
 export default class LogOut extends Component {
@@ -15,14 +14,6 @@ export default class LogOut extends Component {
 
         return <center>
             <button onClick={() => this.onLogoutClicked()}>Log out</button>
-
-            <FirebaseAuthConsumer>
-                {({ isSignedIn, user, providerId }) => {
-                    console.log(isSignedIn)
-                    console.log(user)
-                    console.log(providerId)
-                }}
-            </FirebaseAuthConsumer>
         </center>
     }
 }
