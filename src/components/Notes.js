@@ -29,15 +29,15 @@ export default class Notes extends Component {
 
     return( 
       <div> 
-        {{note} && {note} !== undefined? console.log(note) /*note.map((note, key)=> (
-          // <div key={key}>
-          //   <p>Fecha:{note.data.date}</p>
-          //   <p>#{note.data.label}</p>
-          //   <p>Título:{note.data.title}</p>
-          //   <p>Texto:{note.data.text}</p>
-          //   <p>Editar Eliminar</p>
-          // </div> 
-        ))*/: console.log('De hecho no') }
+        {note && note !== undefined? note.notes.map((note, key)=> (
+          <div key={key}>
+            <p>Fecha:{note.data.date}</p>
+            <p>#{note.data.label}</p>
+            <p>Título:{note.data.title}</p>
+            <p>Texto:{note.data.text}</p>
+            <p>Editar Eliminar</p>
+          </div> 
+        )) : console.log('De hecho no') }
       </div>
   )
 }
