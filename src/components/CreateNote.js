@@ -5,6 +5,8 @@ import { Input, InputGroup, Col, Row, Button} from 'reactstrap';
 class CreateNote extends Component {
 	state = {
 		notes: [],
+		inputLabel:'',
+		inputTitle:'',
 		inputText:'',
 	  }
 	  
@@ -16,8 +18,10 @@ class CreateNote extends Component {
 	//   );
 	
 	  action =() =>{
-		const{inputText} = this.state;
+		const{inputText, inputTitle, inputLabel} = this.state;
 		db.collection('notes').add({
+		  label: inputLabel,
+		  title: inputTitle,
 		  text: inputText
 		}).then(()=>{
 		  console.log('Agregado')
@@ -35,6 +39,16 @@ class CreateNote extends Component {
 			<Row>
 			  <Col xs='10'>
 				<InputGroup>
+				<Input 
+				  placeholder = '#etiqueta' 
+				  value = {note.inputValue}
+				  onChange= {(event) => ( this.setState({ inputLabel: event.target.value }))}
+				  />
+				<Input 
+				  placeholder = 'Título' 
+				  value = {note.inputValue}
+				  onChange= {(event) => ( this.setState({ inputTitle: event.target.value }))}
+				  />
 				  <Input 
 				  placeholder = 'Nueva nota' 
 				  value = {note.inputValue}
