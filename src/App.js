@@ -16,10 +16,16 @@ function App() {
       <Container>
         <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
         <FirebaseAuthConsumer>
-          {({ isSignedIn,  user}) => {
-            console.log(user);
-            //localStorage.setItem("name", user.displayName);
+          {({ isSignedIn,  user}) => {          
+            (firebase.auth().currentUser)? localStorage.setItem('uid', firebase.auth().currentUser.uid) :  console.log('doesnt exist')
             return isSignedIn ? <HomePage /> : <LogInPage />
+          }
+        }
+        </FirebaseAuthConsumer>
+        <FirebaseAuthConsumer>
+        {({ isSignedIn,  user}) => {          
+            (firebase.auth().currentUser)? localStorage.setItem('name', firebase.auth().currentUser.displayName) :  console.log('doesnt exist')
+            return isSignedIn ? console.log(firebase.auth().currentUser.displayName) : console.log('doesnt exist') 
           }
         }
         </FirebaseAuthConsumer>
