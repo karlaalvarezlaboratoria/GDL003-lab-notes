@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import db from '../firestore';
 import {Card, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
+//import EditButton from './EditButton'
+//import DeleteButton from './DeleteButton';
 
 export default class Notes extends Component {
   
   state = {
     notes: [],
+    edit: false,
+    id: ''
   }
 
   componentDidMount(){
-    db.collection('notes')
+    db.collection('notes').orderBy("date", "desc")
     .onSnapshot((snapShots) => {
       this.setState({
         notes: snapShots.docs.map(doc => {
@@ -31,6 +35,7 @@ export default class Notes extends Component {
             <CardTitle>{note.data.title}</CardTitle>
             <CardText>{note.data.text}</CardText>
           </CardBody>
+         {/* <EditButton/><DeleteButton/>*/}
         </Card>
         )) : console.log('De hecho no') }
       </div>
