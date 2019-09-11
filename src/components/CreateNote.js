@@ -1,32 +1,58 @@
 import React, {Component} from 'react';
-import  firebase from 'firebase/app';
-import db from 'firebase/firebase-firestore';
+import db from '../firestore';
+import { Input, InputGroup, Col, Row, Button} from 'reactstrap';
 
-db.settings((timestampsInSnapshots: true));
-
-class Note extends Component {
-	// constructor (props) {
-	//  	super (props)
-	//  	this.state = {
-	//  		title: props.title,
-	//  		message: props.message
-	//  	}
-	// }
-	// render () {
-	// 	return (
-	// 		<section className="noteContainer">
-	// 			<header>
-	// 				<p>{this.state.title}</p>
-	// 			</header>
-	// 			<section className="noteBody">
-	// 				<p>{this.state.text}</p>
-	// 			</section>
-
-	// 			<button>Edit</button>
-	// 			<button>Delete</button>
-	// 		</section>
-	// 	)
-	// }
+class CreateNote extends Component {
+	state = {
+		notes: [],
+		inputText:'',
+	  }
+	  
+	  
+	//   changeValue = (event)=> (
+	// 	this.setState({
+	// 	  inputText:event.target.value
+	// 	})
+	//   );
+	
+	  action =() =>{
+		const{inputText} = this.state;
+		db.collection('notes').add({
+		  text: inputText
+		}).then(()=>{
+		  console.log('Agregado')
+		}).catch(()=>{
+		  console.log('error')
+		})
+	  }
+	
+	  render() {
+		const note= this.state;
+		//console.log(note)
+	
+		return( 
+		  <div> 
+			<Row>
+			  <Col xs='10'>
+				<InputGroup>
+				  <Input 
+				  placeholder = 'Nueva nota' 
+				  value = {note.inputValue}
+				  onChange= {(event) => ( this.setState({ inputText: event.target.value }))}
+				  />
+				</InputGroup>
+			  </Col>
+			  <Col xs ='2'>
+				<div className = 'text-right'>
+				  <Button color = 'info' onClick = {this.action}>
+					Agregar
+				  </Button>
+				</div>
+			  </Col>
+			</Row>
+		</div>
+ )
+}
 }
 
-export default Note;
+export default CreateNote;
