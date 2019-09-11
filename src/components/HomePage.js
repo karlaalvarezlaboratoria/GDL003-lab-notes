@@ -5,10 +5,12 @@ import Notes from './Notes'
 import CreateNote from './CreateNote'
 
 
-function HomePage() {  
+function HomePage() { 
+  let name = localStorage.getItem('name'); 
   return (
     <div>
     <LogOut />
+    <h1>Notas de {name}</h1>
     <CreateNote/>
     <Notes /> 
     </div>
