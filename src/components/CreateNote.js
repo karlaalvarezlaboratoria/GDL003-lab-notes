@@ -10,17 +10,20 @@ class CreateNote extends Component {
 		inputLabel:'',
 		inputTitle:'',
 		inputText:'',
+		uid:''
 	  }
 	
 	  action =() =>{
 		const{inputText, inputTitle, inputLabel} = this.state;
 		let day = new Date().toLocaleDateString();
 		let hour= new Date().toLocaleTimeString();
+		let uid = localStorage.getItem('uid');
 		db.collection('notes').add({
 		  label: inputLabel,
 		  title: inputTitle,
 		  text: inputText,
-		  date: day +' '+hour 
+		  date: day +' '+hour, 
+		  uid: uid
 		}).then(()=>{
 		  console.log('Agregado')
 		}).catch(()=>{
