@@ -5,24 +5,22 @@ import { Input, InputGroup, Col, Row, Button} from 'reactstrap';
 class CreateNote extends Component {
 	state = {
 		notes: [],
+		edit: false,
+		date: '' ,
 		inputLabel:'',
 		inputTitle:'',
 		inputText:'',
 	  }
-	  
-	  
-	//   changeValue = (event)=> (
-	// 	this.setState({
-	// 	  inputText:event.target.value
-	// 	})
-	//   );
 	
 	  action =() =>{
 		const{inputText, inputTitle, inputLabel} = this.state;
+		let day = new Date().toLocaleDateString();
+		let hour= new Date().toLocaleTimeString();
 		db.collection('notes').add({
 		  label: inputLabel,
 		  title: inputTitle,
-		  text: inputText
+		  text: inputText,
+		  date: day +' '+hour 
 		}).then(()=>{
 		  console.log('Agregado')
 		}).catch(()=>{
@@ -59,7 +57,7 @@ class CreateNote extends Component {
 			  <Col xs ='2'>
 				<div className = 'text-right'>
 				  <Button color = 'info' onClick = {this.action}>
-					Agregar
+				  {this.state.edit ? 'Editar' : 'Agregar'}
 				  </Button>
 				</div>
 			  </Col>
