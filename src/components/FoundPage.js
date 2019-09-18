@@ -1,14 +1,18 @@
-import React from 'react'
+// import React from 'react'
+// import LoginPage from './LogInPage';
 
 
-function FoundPage() {  
-  return (
+// function FoundPage() {  
+//   return (
+
     
-    <div>
-      <p> Esta es mi pagina de fondo es necesaria???</p>
-    </div>
+    
+//     <div>
+//       <LoginPage/>
+//       <p> Esta es mi pagina de fondo es necesaria???</p>
+//     </div>
   
-  );
-}
+//   );
+// }
     
-export default FoundPage;
+// export default FoundPage;

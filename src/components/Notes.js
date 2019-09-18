@@ -12,7 +12,7 @@ export default class Notes extends Component {
     id: ''
   }
 
-  componentDidMount(){
+  componentDidMount(){    
     db.collection('notes').orderBy("date", "desc")
     .onSnapshot((snapShots) => {
       this.setState({
@@ -22,12 +22,14 @@ export default class Notes extends Component {
       })  
     })
     } 
+  
 
   render() {
     const note= this.state;
     return( 
       <div> 
         {note && note !== undefined? note.notes.map((note, key)=> ( 
+
           <Card key={key} style={{ width: '18rem' }}>
           <CardBody>
             <CardText>{note.data.date}</CardText>
