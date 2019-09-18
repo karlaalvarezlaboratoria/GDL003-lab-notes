@@ -12,8 +12,10 @@ export default class Notes extends Component {
     id: ''
   }
 
-  componentDidMount(){    
+  componentDidMount(){ 
+    const userUid= localStorage.getItem('uid'); 
     db.collection('notes').orderBy("date", "desc")
+    .where("uid", "==", userUid)
     .onSnapshot((snapShots) => {
       this.setState({
         notes: snapShots.docs.map(doc => {
@@ -21,15 +23,16 @@ export default class Notes extends Component {
         })
       })  
     })
+    
     } 
   
 
-  render() {
+  render(id) {
     const note= this.state;
+
     return( 
       <div> 
         {note && note !== undefined? note.notes.map((note, key)=> ( 
-
           <Card key={key} style={{ width: '18rem' }}>
           <CardBody>
             <CardText>{note.data.date}</CardText>

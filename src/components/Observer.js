@@ -11,7 +11,7 @@ const Observer = () => {
         <React.Fragment>
             <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
             <FirebaseAuthConsumer>
-            {({ isSignedIn,  user}) => { 
+            {({ isSignedIn}) => { 
                 (firebase.auth().currentUser)? 
                 localStorage.setItem('uid', firebase.auth().currentUser.uid) : 
                 console.log('Espera para el nombre');
