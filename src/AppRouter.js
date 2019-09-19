@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'; 
 import HomePage from './components/HomePage';
 import LogIn from './components/LogInPage';
+import EditNote from './components/EditNote';
 import {ProtectedRoute} from './components/ProtectedRoute'
 
 const AppRouter = () => (
@@ -10,6 +11,7 @@ const AppRouter = () => (
   <BrowserRouter>
     <Switch>
       <ProtectedRoute exact path = "/home" component ={HomePage}/>
+      <ProtectedRoute path= "/note/" component = {EditNote}/> 
       <Route exact path = "/" component ={LogIn}/>
       <Route path = '*' component = {() => '404 NOT FOUND'}/> 
     </Switch>

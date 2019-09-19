@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import db from '../firestore';
 import {Card, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
-//import EditButton from './EditButton'
-//import DeleteButton from './DeleteButton';
+import {Link} from 'react-router-dom';
 
 export default class Notes extends Component {
   
@@ -40,7 +39,11 @@ export default class Notes extends Component {
             <CardTitle>{note.data.title}</CardTitle>
             <CardText>{note.data.text}</CardText>
           </CardBody>
-         {/* <EditButton/><DeleteButton/>*/}
+          <div className="clearfix" style={{ padding: '.5rem' }}>
+            <Link to= {'/note/'+key}>Edit</Link>
+            <Link className='float-right' to= {'/delete/'+key}>Delete</Link>
+          </div>
+            
         </Card>
         )) : console.log('De hecho no') }
       </div>

@@ -60,7 +60,7 @@ class CreateNote extends Component {
 			  <Col xs ='2'>
 				<div className = 'text-right'>
 				  <Button color = 'info' onClick = {this.action}>
-				  {this.state.edit ? 'Editar' : 'Agregar'}
+				  Add
 				  </Button>
 				</div>
 			  </Col>

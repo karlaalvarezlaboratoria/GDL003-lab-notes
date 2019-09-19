@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import Observer from './Observer';
+import {Button} from 'reactstrap';
 
 export default class LogIn extends Component {
     onGoogleSignInClicked = () => {
@@ -22,9 +23,8 @@ export default class LogIn extends Component {
 
         return <center>
             <Observer/>
-            <button onClick={() => this.onGoogleSignInClicked()}>Sign in with google</button>
-            <button onClick={() => this.onFacebookSignInClicked()}>Sign in with facebook</button>
-
+            <Button onClick ={() => this.onGoogleSignInClicked()}>Sign in with google</Button>
+            <Button onClick ={() => this.onFacebookSignInClicked()}>Sign in with facebook</Button>
         </center>
     }
 }

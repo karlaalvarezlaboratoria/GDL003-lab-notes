@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import {withRouter} from 'react-router-dom';
+import {Button} from 'reactstrap';
 
  class LogOut extends Component {
     onLogoutClicked = () => {
@@ -17,7 +18,10 @@ import {withRouter} from 'react-router-dom';
     render() {
         
         return <center>
-            <button onClick={() => { this.onLogoutClicked()}}>Log out</button>
+            <Button color = 'info' onClick ={() => { this.onLogoutClicked()}}>
+				  Log Out
+				  </Button>
+            
         </center>
     }
 }
