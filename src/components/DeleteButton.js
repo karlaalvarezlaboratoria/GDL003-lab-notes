@@ -1,33 +1,38 @@
 import React, {Component} from 'react';
 import db from '../firestore';
-import {Button} from 'reactstrap';
 
-// class DeleteButton extends Component {
-//     state={
-//         notes:[],
-//         edit:false,
-//         id: ''
-//     }    
-//     getNote = (id) => {
-//         let docRef = db.collection('notes').doc(id);
+class Delete extends Component {
+    constructor (props) {
+        super(props);
+        this.state   = {
+            note : ''
+        }
+     
+    }
 
-//         docRef.get().then((doc)=>{
-//             if(doc.exists){
-//                this.setState({
-//                    inputValue: doc.data().note,
-//                    edit: true,
-//                    id: doc.id
-//                }) 
-//             }else{
-//                 console.log('El documento no existe')
-//             }
-//         }).catch((error) => {
-//             console.log(error);
-//         })
-//     }
-//     return (
-//         <Button>Borrar</Button>
-//     );
-//   }
+    
+    delete = id => {
       
-//   export default DeleteButton;
+        this.ref = db
+        .collection("notes")
+        .doc(id).delete().then(()=>{
+            
+            console.log("ya se borró");
+              
+           }).catch((error)=>{
+               console.log(error);
+           })
+    }
+    
+    
+    
+     render () {
+    
+         return(
+        <div>        
+            <button className='delete' onClick= {() => this.delete(this.props.id)}></button>               
+        </div>
+     )}
+    }
+     export default Delete;
+    

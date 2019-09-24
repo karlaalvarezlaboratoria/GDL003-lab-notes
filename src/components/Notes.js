@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import db from '../firestore';
 import {Card, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import Delete from './DeleteButton';
 
 export default class Notes extends Component {
   
@@ -24,9 +25,11 @@ export default class Notes extends Component {
     })
     
     } 
+
+    
   
 
-  render(id) {
+  render() {
     const note= this.state;
 
     return( 
@@ -40,8 +43,9 @@ export default class Notes extends Component {
             <CardText>{note.data.text}</CardText>
           </CardBody>
           <div className="clearfix" style={{ padding: '.5rem' }}>
-            <Link to= {'/note/'+key}>Edit</Link>
-            <Link className='float-right' to= {'/delete/'+key}>Delete</Link>
+            <Link id={note.id} to= {'/note/'+note.id} >Edit</Link>
+            <Delete id= {note.id} >Delete</Delete>
+            {console.log(note.id)/* <Link className='float-right' to= {'/delete/'+key}>Delete</Link> */}
           </div>
             
         </Card>
